@@ -39,7 +39,7 @@ export const Footer: React.FC<FooterProps> = ({
             Vision
           </button>
           <a
-            href="/assets/aistudio/SanatanVerse_Master_Brand_Blueprint_Editable_Checklist_b02bfafc.pdf"
+            href={`${import.meta.env.BASE_URL}assets/aistudio/SanatanVerse_Master_Brand_Blueprint_Editable_Checklist_b02bfafc.pdf`}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-stone-200 transition-colors whitespace-nowrap"

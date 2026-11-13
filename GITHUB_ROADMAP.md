@@ -82,3 +82,17 @@ Once your repo is on GitHub:
 2. In your GitHub repo → **Settings → Secrets and variables → Actions**, add:
    - Secret name: **`FIREBASE_SERVICE_ACCOUNT`**
 3. Every push to `main` will automatically test, lint, build `dist/`, and deploy to Firebase Hosting (`sanatanverse.cloud`).
+
+---
+
+## 6. Free Public Test Link via GitHub Pages (`github.io`)
+
+To publish a free public testing link directly from GitHub (`https://<your-username>.github.io/sanatanverse/`):
+
+1. Ensure the GitHub repository visibility is **`public`** *(free GitHub Pages requires a public repo)*:
+   ```bash
+   bash scripts/bootstrap-github.sh <your-username>/sanatanverse public
+   ```
+2. Open your repo on GitHub → **Settings → Pages → Build and deployment → Source** and choose **GitHub Actions**.
+3. The included workflow `.github/workflows/deploy-github-pages.yml` automatically computes the repository subpath (`VITE_BASE_PATH`), builds `dist/`, and publishes your live test URL (`https://<your-username>.github.io/sanatanverse/`).
+4. **Optional for Sign-In / Admin Testing on GitHub Pages**: Add `<your-username>.github.io` under [Firebase Authentication → Settings → Authorized domains](https://console.firebase.google.com/project/pristine-music-b3kqt/authentication/settings). *(All public timeline browsing, Sanskrit glossary, and seeded comics work immediately without signing in.)*

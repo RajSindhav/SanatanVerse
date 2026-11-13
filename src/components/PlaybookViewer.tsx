@@ -107,7 +107,7 @@ export const PlaybookViewer: React.FC<PlaybookViewerProps> = ({
           {/* Download Blueprint PDF button referencing local asset */}
           <div className="flex items-center gap-3">
             <a
-              href="/assets/aistudio/SanatanVerse_Master_Brand_Blueprint_Editable_Checklist_b02bfafc.pdf"
+              href={`${import.meta.env.BASE_URL}assets/aistudio/SanatanVerse_Master_Brand_Blueprint_Editable_Checklist_b02bfafc.pdf`}
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2.5 rounded-xl text-xs font-semibold bg-stone-900 hover:bg-stone-800 border border-amber-500/30 text-amber-300 flex items-center gap-2 transition-colors shadow"
