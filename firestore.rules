@@ -1,0 +1,285 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global default-deny safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Hardened Global Helpers
+    function isValidId(id) {
+      return id is string && id.size() >= 3 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerifiedUser() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isAdmin() {
+      return isVerifiedUser() && (
+        request.auth.token.email == 'rajsindhav77@gmail.com' ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    function isValidTrack(track) {
+      return track in ['sacred', 'scientific', 'historical'];
+    }
+
+    function isValidEvidence(label) {
+      return label in [
+        'Well established',
+        'Estimated date',
+        'Traditional chronology',
+        'Textual evidence',
+        'Debated',
+        'Unverified claim'
+      ];
+    }
+
+    function isValidTopic(data) {
+      return data.keys().hasAll([
+        'id',
+        'title',
+        'eraId',
+        'eraName',
+        'track',
+        'traditionalDate',
+        'historicalDateRange',
+        'evidenceLabel',
+        'summary',
+        'fullExplanation',
+        'culturalSignificance',
+        'relatedEntities',
+        'sources',
+        'createdBy',
+        'createdAt',
+        'updatedAt'
+      ])
+      && data.keys().hasOnly([
+        'id',
+        'title',
+        'sanskritTitle',
+        'eraId',
+        'eraName',
+        'track',
+        'traditionalDate',
+        'historicalDateRange',
+        'textCompositionDate',
+        'evidenceLabel',
+        'uncertaintyNotes',
+        'summary',
+        'fullExplanation',
+        'culturalSignificance',
+        'relatedEntities',
+        'sources',
+        'createdBy',
+        'createdAt',
+        'updatedAt'
+      ])
+      && isValidId(data.id)
+      && data.title is string && data.title.size() >= 3 && data.title.size() <= 160
+      && (!('sanskritTitle' in data) || (data.sanskritTitle is string && data.sanskritTitle.size() <= 160))
+      && data.eraId is string && data.eraId.size() >= 2 && data.eraId.size() <= 80
+      && data.eraName is string && data.eraName.size() >= 2 && data.eraName.size() <= 120
+      && data.track is string && isValidTrack(data.track)
+      && data.traditionalDate is string && data.traditionalDate.size() >= 1 && data.traditionalDate.size() <= 160
+      && data.historicalDateRange is string && data.historicalDateRange.size() >= 1 && data.historicalDateRange.size() <= 160
+      && (!('textCompositionDate' in data) || (data.textCompositionDate is string && data.textCompositionDate.size() <= 160))
+      && data.evidenceLabel is string && isValidEvidence(data.evidenceLabel)
+      && (!('uncertaintyNotes' in data) || (data.uncertaintyNotes is string && data.uncertaintyNotes.size() <= 600))
+      && data.summary is string && data.summary.size() >= 10 && data.summary.size() <= 500
+      && data.fullExplanation is string && data.fullExplanation.size() >= 10 && data.fullExplanation.size() <= 4000
+      && data.culturalSignificance is string && data.culturalSignificance.size() >= 5 && data.culturalSignificance.size() <= 1200
+      && data.relatedEntities is list && data.relatedEntities.size() <= 10
+      && (data.relatedEntities.size() == 0 || data.relatedEntities[0] is string)
+      && data.sources is list && data.sources.size() <= 8
+      && (data.sources.size() == 0 || data.sources[0] is map)
+      && data.createdBy is string && data.createdBy.size() >= 1 && data.createdBy.size() <= 128
+      && data.createdAt is timestamp
+      && data.updatedAt is timestamp;
+    }
+
+    function isValidMediaType(mediaType) {
+      return mediaType in [
+        'Comic Issue',
+        'Motion Comic',
+        'Graphic Novel',
+        'Concept Art',
+        'Audio Narration',
+        'Video Teaser',
+        'Research Sourcebook'
+      ];
+    }
+
+    function isValidMediaStatus(status) {
+      return status in ['Published', 'In Production', 'Planned', 'Concept'];
+    }
+
+    function isValidCoverPreset(preset) {
+      return preset in ['sacred-cosmos', 'scientific-nebula', 'historical-temple'];
+    }
+
+    function isValidTopicMedia(data) {
+      return data.keys().hasAll([
+        'id',
+        'topicId',
+        'track',
+        'title',
+        'mediaType',
+        'status',
+        'creatorName',
+        'synopsis',
+        'coverPreset',
+        'comicPanels',
+        'createdBy',
+        'createdAt',
+        'updatedAt'
+      ])
+      && data.keys().hasOnly([
+        'id',
+        'topicId',
+        'track',
+        'title',
+        'sanskritTitle',
+        'mediaType',
+        'status',
+        'issueNumber',
+        'creatorName',
+        'synopsis',
+        'durationOrLength',
+        'coverPreset',
+        'externalUrl',
+        'comicPanels',
+        'createdBy',
+        'createdAt',
+        'updatedAt'
+      ])
+      && isValidId(data.id)
+      && isValidId(data.topicId)
+      && data.track is string && isValidTrack(data.track)
+      && data.title is string && data.title.size() >= 3 && data.title.size() <= 160
+      && (!('sanskritTitle' in data) || (data.sanskritTitle is string && data.sanskritTitle.size() <= 160))
+      && data.mediaType is string && isValidMediaType(data.mediaType)
+      && data.status is string && isValidMediaStatus(data.status)
+      && (!('issueNumber' in data) || (data.issueNumber is string && data.issueNumber.size() <= 40))
+      && data.creatorName is string && data.creatorName.size() >= 2 && data.creatorName.size() <= 100
+      && data.synopsis is string && data.synopsis.size() >= 10 && data.synopsis.size() <= 2000
+      && (!('durationOrLength' in data) || (data.durationOrLength is string && data.durationOrLength.size() <= 60))
+      && data.coverPreset is string && isValidCoverPreset(data.coverPreset)
+      && (!('externalUrl' in data) || (data.externalUrl is string && data.externalUrl.size() <= 400))
+      && data.comicPanels is list && data.comicPanels.size() <= 12
+      && (data.comicPanels.size() == 0 || data.comicPanels[0] is map)
+      && data.createdBy is string && data.createdBy.size() >= 1 && data.createdBy.size() <= 128
+      && data.createdAt is timestamp
+      && data.updatedAt is timestamp;
+    }
+
+    // Timeline Topics: public catalog read, ADMIN ONLY writes
+    match /topics/{topicId} {
+      allow list: if true;
+      allow get: if isValidId(topicId);
+
+      allow create: if isAdmin()
+        && isValidId(topicId)
+        && isValidTopic(incoming())
+        && incoming().id == topicId
+        && incoming().createdBy == request.auth.uid
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+
+      allow update: if isAdmin()
+        && isValidId(topicId)
+        && isValidTopic(incoming())
+        && incoming().id == existing().id
+        && incoming().createdBy == existing().createdBy
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly([
+          'title',
+          'sanskritTitle',
+          'eraId',
+          'eraName',
+          'track',
+          'traditionalDate',
+          'historicalDateRange',
+          'textCompositionDate',
+          'evidenceLabel',
+          'uncertaintyNotes',
+          'summary',
+          'fullExplanation',
+          'culturalSignificance',
+          'relatedEntities',
+          'sources',
+          'updatedAt'
+        ]);
+
+      allow delete: if isAdmin() && isValidId(topicId);
+    }
+
+    // Topic Comics & Media: public read, verified creator or admin write
+    match /topicMedia/{mediaId} {
+      allow list: if true;
+      allow get: if isValidId(mediaId);
+
+      allow create: if isVerifiedUser()
+        && isValidId(mediaId)
+        && isValidTopicMedia(incoming())
+        && incoming().id == mediaId
+        && incoming().createdBy == request.auth.uid
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+
+      allow update: if isVerifiedUser()
+        && isValidId(mediaId)
+        && isValidTopicMedia(incoming())
+        && incoming().id == existing().id
+        && incoming().topicId == existing().topicId
+        && incoming().createdBy == existing().createdBy
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          isAdmin() || (
+            existing().createdBy == request.auth.uid
+            && incoming().diff(existing()).affectedKeys().hasOnly([
+              'title',
+              'sanskritTitle',
+              'mediaType',
+              'status',
+              'issueNumber',
+              'creatorName',
+              'synopsis',
+              'durationOrLength',
+              'coverPreset',
+              'externalUrl',
+              'comicPanels',
+              'updatedAt'
+            ])
+          )
+        );
+
+      allow delete: if isVerifiedUser()
+        && isValidId(mediaId)
+        && (isAdmin() || existing().createdBy == request.auth.uid);
+    }
+
+    // Admin registry: locked against list scraping and self-promotion
+    match /admins/{userId} {
+      allow get: if isSignedIn() && isValidId(userId) && request.auth.uid == userId;
+      allow list, create, update, delete: if false;
+    }
+  }
+}

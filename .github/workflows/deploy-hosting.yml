@@ -1,0 +1,46 @@
+name: Deploy Trial Site to Firebase Hosting (sanatanverse.cloud)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy_hosting:
+    name: Build & Deploy to Firebase Hosting
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build production dist
+        run: npm run build
+
+      - name: Deploy to Firebase Hosting (when secret is configured)
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        if: ${{ env.FIREBASE_SA != '' }}
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          channelId: live
+          projectId: pristine-music-b3kqt
+
+      - name: Skip notice when secret is not yet set
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        if: ${{ env.FIREBASE_SA == '' }}
+        run: |
+          echo "FIREBASE_SERVICE_ACCOUNT secret not set yet — skipping auto-deploy."
+          echo "Add FIREBASE_SERVICE_ACCOUNT in GitHub Repo Settings -> Secrets -> Actions to auto-deploy sanatanverse.cloud on push."

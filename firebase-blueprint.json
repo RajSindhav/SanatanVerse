@@ -1,0 +1,117 @@
+{
+  "entities": {
+    "TimelineTopic": {
+      "title": "TimelineTopic",
+      "description": "A chronological topic published to one of the three timelines (sacred, scientific, historical) by an administrator.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 3, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "title": { "type": "string", "minLength": 3, "maxLength": 160 },
+        "sanskritTitle": { "type": "string", "maxLength": 160 },
+        "eraId": { "type": "string", "minLength": 2, "maxLength": 80 },
+        "eraName": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "track": { "type": "string", "enum": ["sacred", "scientific", "historical"] },
+        "traditionalDate": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "historicalDateRange": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "textCompositionDate": { "type": "string", "maxLength": 160 },
+        "evidenceLabel": {
+          "type": "string",
+          "enum": ["Well established", "Estimated date", "Traditional chronology", "Textual evidence", "Debated", "Unverified claim"]
+        },
+        "uncertaintyNotes": { "type": "string", "maxLength": 600 },
+        "summary": { "type": "string", "minLength": 10, "maxLength": 500 },
+        "fullExplanation": { "type": "string", "minLength": 10, "maxLength": 4000 },
+        "culturalSignificance": { "type": "string", "minLength": 5, "maxLength": 1200 },
+        "relatedEntities": { "type": "array" },
+        "sources": { "type": "array" },
+        "createdBy": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "id",
+        "title",
+        "eraId",
+        "eraName",
+        "track",
+        "traditionalDate",
+        "historicalDateRange",
+        "evidenceLabel",
+        "summary",
+        "fullExplanation",
+        "culturalSignificance",
+        "relatedEntities",
+        "sources",
+        "createdBy",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "TopicMedia": {
+      "title": "TopicMedia",
+      "description": "A comic issue, motion comic, graphic novel, concept art, audio narration, or video teaser attached to a timeline topic.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 3, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "topicId": { "type": "string", "minLength": 3, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "track": { "type": "string", "enum": ["sacred", "scientific", "historical"] },
+        "title": { "type": "string", "minLength": 3, "maxLength": 160 },
+        "sanskritTitle": { "type": "string", "maxLength": 160 },
+        "mediaType": {
+          "type": "string",
+          "enum": ["Comic Issue", "Motion Comic", "Graphic Novel", "Concept Art", "Audio Narration", "Video Teaser", "Research Sourcebook"]
+        },
+        "status": { "type": "string", "enum": ["Published", "In Production", "Planned", "Concept"] },
+        "issueNumber": { "type": "string", "maxLength": 40 },
+        "creatorName": { "type": "string", "minLength": 2, "maxLength": 100 },
+        "synopsis": { "type": "string", "minLength": 10, "maxLength": 2000 },
+        "durationOrLength": { "type": "string", "maxLength": 60 },
+        "coverPreset": { "type": "string", "enum": ["sacred-cosmos", "scientific-nebula", "historical-temple"] },
+        "externalUrl": { "type": "string", "maxLength": 400 },
+        "comicPanels": { "type": "array" },
+        "createdBy": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "id",
+        "topicId",
+        "track",
+        "title",
+        "mediaType",
+        "status",
+        "creatorName",
+        "synopsis",
+        "coverPreset",
+        "comicPanels",
+        "createdBy",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "AdminUser": {
+      "title": "AdminUser",
+      "description": "Explicit admin allowlist document keyed by Firebase Auth UID.",
+      "type": "object",
+      "properties": {
+        "role": { "type": "string", "enum": ["admin"] },
+        "assignedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["role", "assignedAt"]
+    }
+  },
+  "firestore": {
+    "/topics/{topicId}": {
+      "schema": { "$ref": "#/entities/TimelineTopic" },
+      "description": "Publicly readable custom timeline topics across Sacred, Scientific, and Historical tracks; writable exclusively by admins."
+    },
+    "/topicMedia/{mediaId}": {
+      "schema": { "$ref": "#/entities/TopicMedia" },
+      "description": "Multiple comics and multimedia items linked to any timeline topic; readable by all visitors and writable by verified signed-in creators or admins."
+    },
+    "/admins/{userId}": {
+      "schema": { "$ref": "#/entities/AdminUser" },
+      "description": "Server-managed admin registry keyed by UID for role lookup."
+    }
+  }
+}

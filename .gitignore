@@ -1,0 +1,14 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+.firebase/
+.playwright-cli/
+playwright-report/
+test-results/
+public/sanatanverse-source.zip
+.aistudio/

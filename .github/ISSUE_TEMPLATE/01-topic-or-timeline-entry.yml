@@ -1,0 +1,59 @@
+name: New Timeline Topic Proposal
+description: Plan and track a new topic across the Sacred, Scientific, or Historical timeline (Admin curated)
+title: "[Topic] "
+labels: ["area:timeline"]
+body:
+  - type: dropdown
+    id: track
+    attributes:
+      label: Target Timeline Track
+      options:
+        - Sacred
+        - Scientific
+        - Historical
+    validations:
+      required: true
+  - type: dropdown
+    id: era
+    attributes:
+      label: Chronological Era (01–10)
+      options:
+        - "01. Cosmic Origins"
+        - "02. Earth & Life Origins"
+        - "03. Saraswati-Sindhu Civilization"
+        - "04. Vedic Traditions"
+        - "05. Upanishadic & Darshana Dawn"
+        - "06. Itihasa & Epic Traditions"
+        - "07. Classical Puranic & Scientific Era"
+        - "08. Bhakti & Regional Traditions"
+        - "09. Renaissance & Modern Identity"
+        - "10. Contemporary & Digital Dharma"
+    validations:
+      required: true
+  - type: dropdown
+    id: evidence
+    attributes:
+      label: Evidence Classification
+      options:
+        - Well established
+        - Estimated date
+        - Traditional chronology
+        - Textual evidence
+        - Debated
+        - Unverified claim
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary & Chronological Range
+      description: Include traditional/primary date, historical/scientific date range, and concise summary.
+    validations:
+      required: true
+  - type: textarea
+    id: citations
+    attributes:
+      label: Primary Sources & Bibliography
+      description: List primary scriptures, epigraphy, or peer-reviewed scientific citations.
+    validations:
+      required: true

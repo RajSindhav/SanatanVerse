@@ -1,0 +1,24 @@
+name: Scholarly Correction or Bug Report
+description: Report a date discrepancy, citation improvement, glossary term addition, or UI bug
+title: "[Fix] "
+labels: ["area:correction"]
+body:
+  - type: dropdown
+    id: category
+    attributes:
+      label: Issue Category
+      options:
+        - Chronology / Date Correction
+        - Source / Bibliography Addition
+        - Evidence / Uncertainty Label
+        - Sanskrit Glossary Term Addition
+        - UI / Firebase / Domain Bug
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details & Expected Behavior
+      description: Describe the record, bug, or scholarly adjustment needed and cite primary references if applicable.
+    validations:
+      required: true

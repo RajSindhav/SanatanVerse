@@ -1,0 +1,54 @@
+name: Comic or Media Production Task
+description: Plan and track a Comic Issue, Motion Comic, Graphic Novel, Concept Art, Audio, or Video Teaser for any topic
+title: "[Comic/Media] "
+labels: ["area:comics"]
+body:
+  - type: dropdown
+    id: track
+    attributes:
+      label: Timeline Track
+      options:
+        - Sacred
+        - Scientific
+        - Historical
+    validations:
+      required: true
+  - type: input
+    id: topic
+    attributes:
+      label: Parent Topic ID or Title
+      placeholder: "e.g. sacred-era-1 — Nasadiya Sukta & The Inception of Cosmic Tapas"
+    validations:
+      required: true
+  - type: dropdown
+    id: media_format
+    attributes:
+      label: Media Format
+      options:
+        - Comic Issue
+        - Motion Comic
+        - Graphic Novel
+        - Concept Art
+        - Audio Narration
+        - Video Teaser
+        - Research Sourcebook
+    validations:
+      required: true
+  - type: dropdown
+    id: status
+    attributes:
+      label: Production Stage
+      options:
+        - Concept
+        - Planned
+        - In Production
+        - Published
+    validations:
+      required: true
+  - type: textarea
+    id: storyboard
+    attributes:
+      label: Synopsis & Storyboard Panel Outline
+      description: Outline key panels, scene titles, narration captions, and character dialogue.
+    validations:
+      required: true
