@@ -62,37 +62,37 @@ export function getEvidenceLabelMeta(label: EvidenceLabel): {
   switch (label) {
     case 'Well established':
       return {
-        color: 'text-emerald-400 border-emerald-500/30 bg-emerald-950/30',
+        color: 'text-emerald-700 border-[#a9d1be] bg-[#ebf6f0]',
         definition: 'Supported by strong, converging archaeological, epigraphic or textual evidence.',
         severity: 'high'
       };
     case 'Estimated date':
       return {
-        color: 'text-amber-300 border-amber-500/30 bg-amber-950/30',
+        color: 'text-amber-800 border-[#e0c286] bg-[#faf0d8]',
         definition: 'Evidence supports a verifiable chronological range, but the exact date is uncertain.',
         severity: 'medium'
       };
     case 'Traditional chronology':
       return {
-        color: 'text-orange-400 border-orange-500/30 bg-orange-950/30',
+        color: 'text-[#a63d08] border-[#e6b89c] bg-[#fbeee6]',
         definition: 'A date or cosmic sequence attributed to a specified tradition, Purana or astrological marker.',
         severity: 'contextual'
       };
     case 'Textual evidence':
       return {
-        color: 'text-cyan-300 border-cyan-500/30 bg-cyan-950/30',
+        color: 'text-[#155e75] border-[#a8cfdb] bg-[#e9f4f8]',
         definition: 'A source text is documented and verified; the narrated event itself requires separate assessment.',
         severity: 'medium'
       };
     case 'Debated':
       return {
-        color: 'text-rose-400 border-rose-500/30 bg-rose-950/30',
+        color: 'text-rose-700 border-[#e2b6bc] bg-[#faecee]',
         definition: 'Material scholarly disagreement or unresolved multi-disciplinary evidence exists.',
         severity: 'medium'
       };
     case 'Unverified claim':
       return {
-        color: 'text-stone-400 border-stone-600 bg-stone-900/40',
+        color: 'text-[#5b4d3b] border-[#d7c7aa] bg-[#efe5d2]',
         definition: 'Insufficient primary or secondary evidence to present as historically established.',
         severity: 'contextual'
       };

@@ -133,10 +133,10 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
 
   const trackAccent =
     topic.track === 'sacred'
-      ? 'text-amber-400'
+      ? 'text-[#a63d08]'
       : topic.track === 'scientific'
-      ? 'text-sky-400'
-      : 'text-emerald-400';
+      ? 'text-[#155e75]'
+      : 'text-[#0f6b52]';
 
   const activePanels = activeMedia?.comicPanels || [];
   const safePanelIdx = Math.min(panelIdx, Math.max(0, activePanels.length - 1));
@@ -246,29 +246,29 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#141c31]/65 backdrop-blur-sm"
       role="dialog"
       aria-modal="true"
       aria-labelledby="topic-media-modal-title"
     >
-      <div className="w-full max-w-5xl max-h-[92vh] flex flex-col rounded-2xl bg-[#11100e] border border-stone-800 shadow-2xl overflow-hidden">
+      <div className="w-full max-w-5xl max-h-[92vh] flex flex-col rounded-2xl bg-[#fbf7ee] border border-[#dcc8a4] shadow-[0_28px_64px_rgba(14,20,38,0.35)] overflow-hidden">
         {/* Top Modal Header */}
-        <div className="px-5 sm:px-7 py-4 border-b border-stone-800/90 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shrink-0 bg-[#14120f]">
+        <div className="px-5 sm:px-7 py-4 border-b border-[#dcc8a4] flex flex-col sm:flex-row sm:items-center justify-between gap-3 shrink-0 bg-[#f2e7d2]">
           <div className="space-y-1 min-w-0">
-            <div className="flex flex-wrap items-center gap-2 text-xs text-stone-400">
-              <span className={`font-medium uppercase tracking-wider ${trackAccent}`}>
+            <div className="flex flex-wrap items-center gap-2 text-xs text-[#6f5d47]">
+              <span className={`font-semibold uppercase tracking-wider ${trackAccent}`}>
                 {trackLabel} Timeline
               </span>
               <span aria-hidden="true">·</span>
               <span>{topic.eraName}</span>
               <span aria-hidden="true">·</span>
-              <span className="tabular-nums text-stone-300">
+              <span className="tabular-nums text-[#3e3121] font-medium">
                 {topicMediaList.length} {topicMediaList.length === 1 ? 'comic / media' : 'comics & media'}
               </span>
             </div>
             <h2
               id="topic-media-modal-title"
-              className="font-serif text-lg sm:text-xl font-semibold text-stone-100 truncate"
+              className="font-serif text-lg sm:text-xl font-semibold text-[#231b12] truncate"
             >
               {topic.title}
             </h2>
@@ -283,7 +283,7 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                   if (found) onSelectTopic(found);
                 }}
                 aria-label="Switch timeline topic"
-                className="max-w-[210px] px-2.5 py-1.5 rounded-lg bg-[#090807] border border-stone-800 text-xs text-stone-200 focus:outline-none focus:border-amber-400"
+                className="max-w-[210px] px-2.5 py-1.5 rounded-lg bg-[#fffdf8] border border-[#d5bf97] text-xs text-[#231b12] focus:outline-none focus:border-[#b45309]"
               >
                 {allTopics.map((t) => (
                   <option key={t.id} value={t.id}>
@@ -297,8 +297,8 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
               onClick={() => setIsComposerOpen((prev) => !prev)}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold inline-flex items-center gap-1.5 whitespace-nowrap shrink-0 transition-colors ${
                 isComposerOpen
-                  ? 'bg-stone-800 text-stone-200 hover:bg-stone-700'
-                  : 'bg-amber-400 text-stone-950 hover:bg-amber-300'
+                  ? 'bg-[#e8dac0] text-[#231b12] hover:bg-[#dec9a4]'
+                  : 'bg-[#b45309] text-[#fffaf0] hover:bg-[#92400e] shadow-sm'
               }`}
             >
               <Plus className="w-3.5 h-3.5" />
@@ -308,7 +308,7 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
             <button
               onClick={onClose}
               aria-label="Close Comics & Media Studio"
-              className="p-1.5 rounded-lg text-stone-400 hover:text-stone-100 hover:bg-stone-800/70 transition-colors"
+              className="p-1.5 rounded-lg text-[#5a4b38] hover:text-[#231b12] hover:bg-[#e5d4b3] transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -316,10 +316,10 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
         </div>
 
         {/* Modal Body */}
-        <div className="flex-1 overflow-y-auto p-5 sm:p-7 space-y-6">
+        <div className="flex-1 overflow-y-auto p-5 sm:p-7 space-y-6 bg-[#fbf7ee]">
           {justAddedTitle && (
-            <div className="px-4 py-2.5 rounded-lg bg-emerald-950/60 border border-emerald-800/70 text-xs text-emerald-300">
-              Added <span className="font-semibold text-emerald-200">{justAddedTitle}</span> to{' '}
+            <div className="px-4 py-2.5 rounded-lg bg-[#ebf6f0] border border-[#a9d1be] text-xs text-emerald-800">
+              Added <span className="font-semibold text-emerald-950">{justAddedTitle}</span> to{' '}
               {topic.title}. You can add additional comics or media to this same topic anytime.
             </div>
           )}
@@ -328,28 +328,28 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
             /* Add Multiple Comics / Media Composer */
             <div className="space-y-6">
               <div className="space-y-1">
-                <div className="text-xs font-medium uppercase tracking-wider text-amber-400">
+                <div className="text-xs font-semibold uppercase tracking-wider text-[#b45309]">
                   Comics &amp; Media Studio
                 </div>
-                <h3 className="font-serif text-xl font-medium text-stone-100">
+                <h3 className="font-serif text-xl font-medium text-[#231b12]">
                   Add Comic Issue or Media to &ldquo;{topic.title}&rdquo;
                 </h3>
-                <p className="text-xs sm:text-sm text-stone-400">
+                <p className="text-xs sm:text-sm text-[#5a4b38]">
                   Attach multiple comic issues, motion comics, graphic novels, concept art plates,
                   audio narrations, or teasers to any topic across all three timelines.
                 </p>
               </div>
 
               {!user ? (
-                <div className="p-6 rounded-xl bg-[#14120f] border border-stone-800 space-y-4">
-                  <p className="text-sm text-stone-300">
+                <div className="p-6 rounded-xl bg-[#f5ecda] border border-[#dcc8a4] space-y-4">
+                  <p className="text-sm text-[#3e3121]">
                     Sign in with Google to design and publish comics or media items for this topic.
                   </p>
-                  {authError && <p className="text-xs text-rose-400">{authError}</p>}
+                  {authError && <p className="text-xs text-rose-700">{authError}</p>}
                   <button
                     type="button"
                     onClick={signInWithGoogle}
-                    className="px-4 py-2.5 rounded-lg text-xs font-semibold bg-amber-400 text-stone-950 hover:bg-amber-300 transition-colors inline-flex items-center gap-2 whitespace-nowrap"
+                    className="px-4 py-2.5 rounded-lg text-xs font-semibold bg-[#b45309] text-[#fffaf0] hover:bg-[#92400e] transition-colors inline-flex items-center gap-2 whitespace-nowrap shadow-sm"
                   >
                     <LogIn className="w-4 h-4" />
                     <span>Sign in with Google</span>
@@ -359,7 +359,7 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                 <form onSubmit={handleCreateMedia} noValidate className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <div>
-                      <label className="block text-xs font-medium text-stone-300 mb-1.5">
+                      <label className="block text-xs font-medium text-[#3e3121] mb-1.5">
                         Comic / Media Title *
                       </label>
                       <input
@@ -367,15 +367,15 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         placeholder="e.g. Agni & The Dawn of Tapas"
-                        className="w-full px-3 py-2 rounded-lg bg-[#090807] border border-stone-800 text-sm text-stone-100 placeholder:text-stone-500 focus:outline-none focus:border-amber-400"
+                        className="w-full px-3 py-2 rounded-lg bg-[#fffdf8] border border-[#d5bf97] text-sm text-[#231b12] placeholder:text-[#8d795e] focus:outline-none focus:border-[#b45309]"
                       />
                       {formErrors.title && (
-                        <p className="text-xs text-rose-400 mt-1">{formErrors.title}</p>
+                        <p className="text-xs text-rose-700 mt-1">{formErrors.title}</p>
                       )}
                     </div>
 
                     <div>
-                      <label className="block text-xs font-medium text-stone-300 mb-1.5">
+                      <label className="block text-xs font-medium text-[#3e3121] mb-1.5">
                         Sanskrit / Edition Subtitle
                       </label>
                       <input
@@ -383,18 +383,18 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                         value={sanskritTitle}
                         onChange={(e) => setSanskritTitle(e.target.value)}
                         placeholder="Optional e.g. अग्नि गाथा"
-                        className="w-full px-3 py-2 rounded-lg bg-[#090807] border border-stone-800 text-sm text-stone-100 placeholder:text-stone-500 focus:outline-none focus:border-amber-400"
+                        className="w-full px-3 py-2 rounded-lg bg-[#fffdf8] border border-[#d5bf97] text-sm text-[#231b12] placeholder:text-[#8d795e] focus:outline-none focus:border-[#b45309]"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-medium text-stone-300 mb-1.5">
+                      <label className="block text-xs font-medium text-[#3e3121] mb-1.5">
                         Media Format *
                       </label>
                       <select
                         value={mediaType}
                         onChange={(e) => setMediaType(e.target.value as TopicMediaType)}
-                        className="w-full px-3 py-2 rounded-lg bg-[#090807] border border-stone-800 text-sm text-stone-100 focus:outline-none focus:border-amber-400"
+                        className="w-full px-3 py-2 rounded-lg bg-[#fffdf8] border border-[#d5bf97] text-sm text-[#231b12] focus:outline-none focus:border-[#b45309]"
                       >
                         {MEDIA_TYPES.map((type) => (
                           <option key={type} value={type}>
@@ -405,13 +405,13 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                     </div>
 
                     <div>
-                      <label className="block text-xs font-medium text-stone-300 mb-1.5">
+                      <label className="block text-xs font-medium text-[#3e3121] mb-1.5">
                         Production Status *
                       </label>
                       <select
                         value={status}
                         onChange={(e) => setStatus(e.target.value as TopicMediaStatus)}
-                        className="w-full px-3 py-2 rounded-lg bg-[#090807] border border-stone-800 text-sm text-stone-100 focus:outline-none focus:border-amber-400"
+                        className="w-full px-3 py-2 rounded-lg bg-[#fffdf8] border border-[#d5bf97] text-sm text-[#231b12] focus:outline-none focus:border-[#b45309]"
                       >
                         {MEDIA_STATUSES.map((s) => (
                           <option key={s} value={s}>
@@ -422,7 +422,7 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                     </div>
 
                     <div>
-                      <label className="block text-xs font-medium text-stone-300 mb-1.5">
+                      <label className="block text-xs font-medium text-[#3e3121] mb-1.5">
                         Issue / Edition Number
                       </label>
                       <input
@@ -430,12 +430,12 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                         value={issueNumber}
                         onChange={(e) => setIssueNumber(e.target.value)}
                         placeholder="e.g. Issue #02 or Vol. 1"
-                        className="w-full px-3 py-2 rounded-lg bg-[#090807] border border-stone-800 text-sm text-stone-100 placeholder:text-stone-500 focus:outline-none focus:border-amber-400"
+                        className="w-full px-3 py-2 rounded-lg bg-[#fffdf8] border border-[#d5bf97] text-sm text-[#231b12] placeholder:text-[#8d795e] focus:outline-none focus:border-[#b45309]"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-medium text-stone-300 mb-1.5">
+                      <label className="block text-xs font-medium text-[#3e3121] mb-1.5">
                         Duration / Length
                       </label>
                       <input
@@ -443,12 +443,12 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                         value={durationOrLength}
                         onChange={(e) => setDurationOrLength(e.target.value)}
                         placeholder="e.g. 24 Pages or 8 min Motion"
-                        className="w-full px-3 py-2 rounded-lg bg-[#090807] border border-stone-800 text-sm text-stone-100 placeholder:text-stone-500 focus:outline-none focus:border-amber-400"
+                        className="w-full px-3 py-2 rounded-lg bg-[#fffdf8] border border-[#d5bf97] text-sm text-[#231b12] placeholder:text-[#8d795e] focus:outline-none focus:border-[#b45309]"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-medium text-stone-300 mb-1.5">
+                      <label className="block text-xs font-medium text-[#3e3121] mb-1.5">
                         Creator / Studio Name *
                       </label>
                       <input
@@ -456,15 +456,15 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                         value={creatorName}
                         onChange={(e) => setCreatorName(e.target.value)}
                         placeholder="SanatanVerse Studios"
-                        className="w-full px-3 py-2 rounded-lg bg-[#090807] border border-stone-800 text-sm text-stone-100 placeholder:text-stone-500 focus:outline-none focus:border-amber-400"
+                        className="w-full px-3 py-2 rounded-lg bg-[#fffdf8] border border-[#d5bf97] text-sm text-[#231b12] placeholder:text-[#8d795e] focus:outline-none focus:border-[#b45309]"
                       />
                       {formErrors.creatorName && (
-                        <p className="text-xs text-rose-400 mt-1">{formErrors.creatorName}</p>
+                        <p className="text-xs text-rose-700 mt-1">{formErrors.creatorName}</p>
                       )}
                     </div>
 
                     <div>
-                      <label className="block text-xs font-medium text-stone-300 mb-1.5">
+                      <label className="block text-xs font-medium text-[#3e3121] mb-1.5">
                         External Stream / Gallery URL
                       </label>
                       <input
@@ -472,21 +472,21 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                         value={externalUrl}
                         onChange={(e) => setExternalUrl(e.target.value)}
                         placeholder="https://..."
-                        className="w-full px-3 py-2 rounded-lg bg-[#090807] border border-stone-800 text-sm text-stone-100 placeholder:text-stone-500 focus:outline-none focus:border-amber-400"
+                        className="w-full px-3 py-2 rounded-lg bg-[#fffdf8] border border-[#d5bf97] text-sm text-[#231b12] placeholder:text-[#8d795e] focus:outline-none focus:border-[#b45309]"
                       />
                       {formErrors.externalUrl && (
-                        <p className="text-xs text-rose-400 mt-1">{formErrors.externalUrl}</p>
+                        <p className="text-xs text-rose-700 mt-1">{formErrors.externalUrl}</p>
                       )}
                     </div>
 
                     <div>
-                      <label className="block text-xs font-medium text-stone-300 mb-1.5">
+                      <label className="block text-xs font-medium text-[#3e3121] mb-1.5">
                         Cover Art Direction
                       </label>
                       <select
                         value={coverPreset}
                         onChange={(e) => setCoverPreset(e.target.value as CoverPreset)}
-                        className="w-full px-3 py-2 rounded-lg bg-[#090807] border border-stone-800 text-sm text-stone-100 focus:outline-none focus:border-amber-400"
+                        className="w-full px-3 py-2 rounded-lg bg-[#fffdf8] border border-[#d5bf97] text-sm text-[#231b12] focus:outline-none focus:border-[#b45309]"
                       >
                         {COVER_PRESETS.map((preset) => (
                           <option key={preset} value={preset}>
@@ -498,7 +498,7 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-stone-300 mb-1.5">
+                    <label className="block text-xs font-medium text-[#3e3121] mb-1.5">
                       Synopsis &amp; Creative Notes *
                     </label>
                     <textarea
@@ -506,21 +506,21 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                       value={synopsis}
                       onChange={(e) => setSynopsis(e.target.value)}
                       placeholder="Describe the narrative arc, visual direction, or historical grounding..."
-                      className="w-full px-3 py-2 rounded-lg bg-[#090807] border border-stone-800 text-sm text-stone-100 placeholder:text-stone-500 focus:outline-none focus:border-amber-400"
+                      className="w-full px-3 py-2 rounded-lg bg-[#fffdf8] border border-[#d5bf97] text-sm text-[#231b12] placeholder:text-[#8d795e] focus:outline-none focus:border-[#b45309]"
                     />
                     {formErrors.synopsis && (
-                      <p className="text-xs text-rose-400 mt-1">{formErrors.synopsis}</p>
+                      <p className="text-xs text-rose-700 mt-1">{formErrors.synopsis}</p>
                     )}
                   </div>
 
                   {/* Storyboard Panels Builder */}
-                  <div className="space-y-3 pt-2 border-t border-stone-800/80">
+                  <div className="space-y-3 pt-3 border-t border-[#dcc8a4]">
                     <div className="flex items-center justify-between">
                       <div>
-                        <div className="text-xs font-medium text-stone-200">
+                        <div className="text-xs font-medium text-[#231b12]">
                           Comic Storyboard Panels ({panels.length}/12)
                         </div>
-                        <div className="text-xs text-stone-500">
+                        <div className="text-xs text-[#6f5d47]">
                           Outline sequential scenes, captions, and character dialogue.
                         </div>
                       </div>
@@ -528,7 +528,7 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                         type="button"
                         onClick={handleAddPanelRow}
                         disabled={panels.length >= 12}
-                        className="px-3 py-1.5 rounded-lg text-xs font-medium bg-stone-800 text-stone-200 hover:bg-stone-700 disabled:opacity-40 inline-flex items-center gap-1"
+                        className="px-3 py-1.5 rounded-lg text-xs font-medium bg-[#efe3cc] text-[#231b12] hover:bg-[#e4d2b1] disabled:opacity-40 inline-flex items-center gap-1"
                       >
                         <Plus className="w-3.5 h-3.5" />
                         <span>Add Panel</span>
@@ -536,24 +536,24 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                     </div>
 
                     {formErrors.comicPanels && (
-                      <p className="text-xs text-rose-400">{formErrors.comicPanels}</p>
+                      <p className="text-xs text-rose-700">{formErrors.comicPanels}</p>
                     )}
 
                     <div className="space-y-3">
                       {panels.map((panel, idx) => (
                         <div
                           key={idx}
-                          className="p-4 rounded-xl bg-[#14120f] border border-stone-800 space-y-3"
+                          className="p-4 rounded-xl bg-[#f5ecda] border border-[#dcc8a4] space-y-3"
                         >
-                          <div className="flex items-center justify-between text-xs text-stone-400">
-                            <span className="font-mono text-amber-400">
+                          <div className="flex items-center justify-between text-xs text-[#6f5d47]">
+                            <span className="font-mono font-semibold text-[#b45309]">
                               Panel {String(idx + 1).padStart(2, '0')}
                             </span>
                             {panels.length > 1 && (
                               <button
                                 type="button"
                                 onClick={() => handleRemovePanelRow(idx)}
-                                className="text-stone-500 hover:text-rose-400 transition-colors"
+                                className="text-[#6f5d47] hover:text-rose-700 transition-colors"
                               >
                                 Remove
                               </button>
@@ -567,7 +567,7 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                                 handlePanelFieldChange(idx, 'sceneTitle', e.target.value)
                               }
                               placeholder="Scene title * (e.g. Dawn Over Kurukshetra)"
-                              className="px-3 py-2 rounded-lg bg-[#090807] border border-stone-800 text-xs sm:text-sm text-stone-100 placeholder:text-stone-500 focus:outline-none focus:border-amber-400"
+                              className="px-3 py-2 rounded-lg bg-[#fffdf8] border border-[#d5bf97] text-xs sm:text-sm text-[#231b12] placeholder:text-[#8d795e] focus:outline-none focus:border-[#b45309]"
                             />
                             <input
                               type="text"
@@ -576,7 +576,7 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                                 handlePanelFieldChange(idx, 'dialogue', e.target.value)
                               }
                               placeholder="Optional dialogue (e.g. ARJUNA: ...)"
-                              className="px-3 py-2 rounded-lg bg-[#090807] border border-stone-800 text-xs sm:text-sm text-stone-100 placeholder:text-stone-500 focus:outline-none focus:border-amber-400"
+                              className="px-3 py-2 rounded-lg bg-[#fffdf8] border border-[#d5bf97] text-xs sm:text-sm text-[#231b12] placeholder:text-[#8d795e] focus:outline-none focus:border-[#b45309]"
                             />
                           </div>
                           <textarea
@@ -586,27 +586,27 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                               handlePanelFieldChange(idx, 'caption', e.target.value)
                             }
                             placeholder="Visual description & narration caption *"
-                            className="w-full px-3 py-2 rounded-lg bg-[#090807] border border-stone-800 text-xs sm:text-sm text-stone-100 placeholder:text-stone-500 focus:outline-none focus:border-amber-400"
+                            className="w-full px-3 py-2 rounded-lg bg-[#fffdf8] border border-[#d5bf97] text-xs sm:text-sm text-[#231b12] placeholder:text-[#8d795e] focus:outline-none focus:border-[#b45309]"
                           />
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  {submitError && <p className="text-xs text-rose-400">{submitError}</p>}
+                  {submitError && <p className="text-xs text-rose-700">{submitError}</p>}
 
                   <div className="flex items-center justify-end gap-3 pt-2">
                     <button
                       type="button"
                       onClick={() => setIsComposerOpen(false)}
-                      className="px-4 py-2 rounded-lg text-xs font-medium text-stone-300 hover:text-stone-100 border border-stone-800"
+                      className="px-4 py-2 rounded-lg text-xs font-medium text-[#3e3121] hover:text-[#231b12] bg-[#fffdf8] border border-[#d5bf97] hover:bg-[#f5ecda]"
                     >
                       Cancel
                     </button>
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="px-5 py-2.5 rounded-lg text-xs font-semibold bg-amber-400 text-stone-950 hover:bg-amber-300 disabled:opacity-50"
+                      className="px-5 py-2.5 rounded-lg text-xs font-semibold bg-[#b45309] text-[#fffaf0] hover:bg-[#92400e] disabled:opacity-50 shadow-sm"
                     >
                       {isSubmitting ? 'Publishing to Archive...' : 'Publish Comic / Media'}
                     </button>
@@ -615,13 +615,13 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
               )}
             </div>
           ) : topicMediaList.length === 0 ? (
-            <div className="p-10 rounded-xl bg-[#14120f] border border-stone-800 text-center space-y-4">
-              <p className="text-sm text-stone-300">
+            <div className="p-10 rounded-xl bg-[#f5ecda] border border-[#dcc8a4] text-center space-y-4">
+              <p className="text-sm text-[#4e4030]">
                 No comics or media have been designed for this topic yet.
               </p>
               <button
                 onClick={() => setIsComposerOpen(true)}
-                className="px-4 py-2 rounded-lg text-xs font-semibold bg-amber-400 text-stone-950 hover:bg-amber-300 inline-flex items-center gap-1.5"
+                className="px-4 py-2 rounded-lg text-xs font-semibold bg-[#b45309] text-[#fffaf0] hover:bg-[#92400e] inline-flex items-center gap-1.5 shadow-sm"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>Design First Comic or Media</span>
@@ -632,13 +632,13 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               {/* Left Column: All Comics & Media for This Topic */}
               <div className="lg:col-span-5 space-y-3">
-                <div className="flex items-center justify-between text-xs text-stone-400">
+                <div className="flex items-center justify-between text-xs text-[#6f5d47]">
                   <span className="uppercase tracking-wider font-medium">
                     Attached Editions ({topicMediaList.length})
                   </span>
                   <button
                     onClick={() => setIsComposerOpen(true)}
-                    className="text-amber-400 hover:text-amber-300 font-medium inline-flex items-center gap-1"
+                    className="text-[#b45309] hover:text-[#92400e] font-semibold inline-flex items-center gap-1"
                   >
                     <Plus className="w-3 h-3" />
                     <span>Add Another</span>
@@ -655,14 +655,14 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                     return (
                       <div
                         key={item.id}
-                        className={`rounded-xl border transition-colors p-3.5 flex gap-3.5 items-start cursor-pointer ${
+                        className={`rounded-xl border transition-all p-3.5 flex gap-3.5 items-start cursor-pointer ${
                           isSelected
-                            ? 'bg-[#1a1712] border-amber-400/80'
-                            : 'bg-[#14120f] border-stone-800/90 hover:border-stone-700'
+                            ? 'bg-[#f4e4c5] border-[#b45309] shadow-sm'
+                            : 'bg-[#f5ecda] border-[#dcc8a4] hover:border-[#b45309]/50 hover:bg-[#fffdf8]'
                         }`}
                         onClick={() => handleSelectMedia(item)}
                       >
-                        <div className="w-16 h-20 rounded-lg overflow-hidden shrink-0 bg-[#090807] border border-stone-800">
+                        <div className="w-16 h-20 rounded-lg overflow-hidden shrink-0 bg-[#1b2744] border border-[#d5bf97]">
                           {!imgErrors[item.id] && thumbMeta ? (
                             <img
                               src={thumbMeta.src}
@@ -674,15 +674,15 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                               className="w-full h-full object-cover scale-[1.06]"
                             />
                           ) : (
-                            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-amber-950/70 to-stone-950 text-amber-400/70">
+                            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#1b2744] to-[#2c3d63] text-[#f4c86a]">
                               <BookOpen className="w-5 h-5" />
                             </div>
                           )}
                         </div>
 
                         <div className="flex-1 min-w-0 space-y-1">
-                          <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-stone-400">
-                            <span className="text-amber-400 font-medium">{item.mediaType}</span>
+                          <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-[#6f5d47]">
+                            <span className="text-[#92400e] font-semibold">{item.mediaType}</span>
                             {item.issueNumber && (
                               <>
                                 <span aria-hidden="true">·</span>
@@ -693,11 +693,11 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                             <span>{item.status}</span>
                           </div>
 
-                          <h4 className="font-serif text-sm font-semibold text-stone-100 leading-snug">
+                          <h4 className="font-serif text-sm font-semibold text-[#231b12] leading-snug">
                             {item.title}
                           </h4>
 
-                          <div className="text-xs text-stone-500">
+                          <div className="text-xs text-[#6f5d47]">
                             {item.creatorName}
                             {item.comicPanels.length > 0 &&
                               ` · ${item.comicPanels.length} ${
@@ -714,7 +714,7 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                               void handleDeleteLiveItem(item);
                             }}
                             title="Delete custom comic/media"
-                            className="p-1.5 text-stone-500 hover:text-rose-400 transition-colors shrink-0"
+                            className="p-1.5 text-[#8a7558] hover:text-rose-700 transition-colors shrink-0"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
                           </button>
@@ -728,8 +728,8 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
               {/* Right Column: Active Comic Cover, Synopsis & Interactive Storyboard Reader */}
               {activeMedia && (
                 <div className="lg:col-span-7 space-y-5">
-                  <div className="rounded-xl bg-[#14120f] border border-stone-800 overflow-hidden">
-                    <div className="relative aspect-[16/9] bg-[#090807] border-b border-stone-800/80 overflow-hidden">
+                  <div className="rounded-xl bg-[#fffdf8] border border-[#dcc8a4] overflow-hidden shadow-sm">
+                    <div className="relative aspect-[16/9] bg-[#162038] border-b border-[#dcc8a4] overflow-hidden">
                       {!coverFailed && coverMeta ? (
                         <img
                           src={coverMeta.src}
@@ -741,14 +741,14 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                           className="w-full h-full object-cover scale-[1.06]"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-amber-950/60 via-stone-950 to-black">
-                          <Film className="w-10 h-10 text-amber-400/60" />
+                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#162038] via-[#1f2d4f] to-[#141c31]">
+                          <Film className="w-10 h-10 text-[#f4c86a]/80" />
                         </div>
                       )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#14120f] via-[#14120f]/40 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#101626]/95 via-[#141c31]/55 to-transparent" />
                       <div className="absolute bottom-4 left-5 right-5 space-y-1">
-                        <div className="flex flex-wrap items-center gap-2 text-xs text-stone-300">
-                          <span className="text-amber-400 font-medium">
+                        <div className="flex flex-wrap items-center gap-2 text-xs text-[#e5d9c3]">
+                          <span className="text-[#f4c86a] font-semibold">
                             {activeMedia.mediaType}
                           </span>
                           {activeMedia.issueNumber && (
@@ -766,30 +766,30 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                             </>
                           )}
                         </div>
-                        <h3 className="font-serif text-xl sm:text-2xl font-semibold text-stone-100">
+                        <h3 className="font-serif text-xl sm:text-2xl font-semibold text-[#fcf7ec]">
                           {activeMedia.title}
                         </h3>
                         {activeMedia.sanskritTitle && (
-                          <div className="text-xs font-serif text-amber-300/90">
+                          <div className="text-xs font-serif text-[#f5cf76]">
                             {activeMedia.sanskritTitle}
                           </div>
                         )}
                       </div>
                     </div>
 
-                    <div className="p-5 space-y-4">
-                      <p className="text-sm text-stone-300 leading-relaxed">
+                    <div className="p-5 space-y-4 bg-[#fffdf8]">
+                      <p className="text-sm text-[#4e4030] leading-relaxed">
                         {activeMedia.synopsis}
                       </p>
 
-                      <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-stone-400 pt-2 border-t border-stone-800/70">
+                      <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-[#6f5d47] pt-2 border-t border-[#ebdcb9]">
                         <span>Creator: {activeMedia.creatorName}</span>
                         {activeMedia.externalUrl && (
                           <a
                             href={activeMedia.externalUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-amber-400 hover:text-amber-300 font-medium"
+                            className="inline-flex items-center gap-1 text-[#b45309] hover:text-[#92400e] font-semibold"
                           >
                             <span>Open External Release</span>
                             <ExternalLink className="w-3.5 h-3.5" />
@@ -800,9 +800,9 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                   </div>
 
                   {/* Interactive Comic Storyboard Reader */}
-                  <div className="rounded-xl bg-[#14120f] border border-stone-800 p-5 space-y-4">
+                  <div className="rounded-xl bg-[#f5ecda] border border-[#dcc8a4] p-5 space-y-4">
                     <div className="flex flex-wrap items-center justify-between gap-2">
-                      <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-amber-400">
+                      <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#b45309]">
                         <Layers className="w-4 h-4" />
                         <span>
                           Storyboard Reader ({activePanels.length}{' '}
@@ -814,7 +814,7 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                         <button
                           type="button"
                           onClick={() => setShowAllPanels((prev) => !prev)}
-                          className="text-xs text-stone-400 hover:text-amber-300 transition-colors"
+                          className="text-xs font-medium text-[#5a4b38] hover:text-[#92400e] transition-colors"
                         >
                           {showAllPanels ? 'Single Panel Mode' : 'View All Panels'}
                         </button>
@@ -822,7 +822,7 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                     </div>
 
                     {activePanels.length === 0 ? (
-                      <p className="text-xs sm:text-sm text-stone-400">
+                      <p className="text-xs sm:text-sm text-[#5a4b38]">
                         No storyboard panels attached to this media edition yet.
                       </p>
                     ) : showAllPanels ? (
@@ -830,19 +830,19 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                         {activePanels.map((p, idx) => (
                           <div
                             key={idx}
-                            className="p-4 rounded-lg bg-[#090807] border border-stone-800/90 space-y-2"
+                            className="p-4 rounded-lg bg-[#fffdf8] border border-[#d6bd93] space-y-2 shadow-sm"
                           >
                             <div className="flex items-center justify-between text-xs">
-                              <span className="font-mono text-amber-400">
+                              <span className="font-mono font-semibold text-[#b45309]">
                                 Panel {String(p.panelNumber).padStart(2, '0')}
                               </span>
-                              <span className="font-serif font-medium text-stone-200">
+                              <span className="font-serif font-medium text-[#231b12]">
                                 {p.sceneTitle}
                               </span>
                             </div>
-                            <p className="text-sm text-stone-300 leading-relaxed">{p.caption}</p>
+                            <p className="text-sm text-[#4e4030] leading-relaxed">{p.caption}</p>
                             {p.dialogue && (
-                              <div className="text-xs font-mono text-amber-200/90 bg-stone-900/70 px-3 py-2 rounded">
+                              <div className="text-xs font-mono text-[#7c2d12] bg-[#faebd7] border border-[#e2c29b] px-3 py-2 rounded">
                                 {p.dialogue}
                               </div>
                             )}
@@ -852,20 +852,20 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                     ) : (
                       currentPanel && (
                         <div className="space-y-4">
-                          <div className="p-5 rounded-lg bg-[#090807] border border-stone-800 space-y-3">
+                          <div className="p-5 rounded-lg bg-[#fffdf8] border border-[#d6bd93] space-y-3 shadow-sm">
                             <div className="flex items-center justify-between text-xs">
-                              <span className="font-mono text-amber-400">
+                              <span className="font-mono font-semibold text-[#b45309]">
                                 Scene {safePanelIdx + 1} / {activePanels.length}
                               </span>
-                              <span className="font-serif text-sm font-semibold text-stone-100">
+                              <span className="font-serif text-sm font-semibold text-[#231b12]">
                                 {currentPanel.sceneTitle}
                               </span>
                             </div>
-                            <p className="text-sm text-stone-300 leading-relaxed">
+                            <p className="text-sm text-[#4e4030] leading-relaxed">
                               {currentPanel.caption}
                             </p>
                             {currentPanel.dialogue && (
-                              <div className="text-xs font-mono text-amber-200/95 bg-[#14120f] border border-stone-800 px-3.5 py-2.5 rounded-lg">
+                              <div className="text-xs font-mono text-[#7c2d12] bg-[#faebd7] border border-[#e2c29b] px-3.5 py-2.5 rounded-lg">
                                 {currentPanel.dialogue}
                               </div>
                             )}
@@ -880,7 +880,7 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                                     prev > 0 ? prev - 1 : activePanels.length - 1
                                   )
                                 }
-                                className="px-3 py-1.5 rounded-lg text-xs font-medium bg-stone-900 border border-stone-800 text-stone-200 hover:border-amber-400 inline-flex items-center gap-1"
+                                className="px-3 py-1.5 rounded-lg text-xs font-medium bg-[#fffdf8] border border-[#d5bf97] text-[#3e3121] hover:border-[#b45309] hover:text-[#92400e] inline-flex items-center gap-1"
                               >
                                 <ChevronLeft className="w-3.5 h-3.5" />
                                 <span>Prev Panel</span>
@@ -892,7 +892,7 @@ export const TopicMediaModal: React.FC<TopicMediaModalProps> = ({
                                     prev < activePanels.length - 1 ? prev + 1 : 0
                                   )
                                 }
-                                className="px-3 py-1.5 rounded-lg text-xs font-medium bg-stone-900 border border-stone-800 text-stone-200 hover:border-amber-400 inline-flex items-center gap-1"
+                                className="px-3 py-1.5 rounded-lg text-xs font-medium bg-[#fffdf8] border border-[#d5bf97] text-[#3e3121] hover:border-[#b45309] hover:text-[#92400e] inline-flex items-center gap-1"
                               >
                                 <span>Next Panel</span>
                                 <ChevronRight className="w-3.5 h-3.5" />

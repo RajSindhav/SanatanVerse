@@ -32,14 +32,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     };
     window.addEventListener('resize', handleResize);
 
-    const particles = Array.from({ length: 42 }, () => ({
+    const particles = Array.from({ length: 48 }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      radius: Math.random() * 1.4 + 0.4,
-      alpha: Math.random() * 0.45 + 0.15,
+      radius: Math.random() * 1.7 + 0.5,
+      alpha: Math.random() * 0.45 + 0.16,
       speedX: (Math.random() - 0.5) * 0.14,
       speedY: (Math.random() - 0.5) * 0.14,
-      color: Math.random() > 0.35 ? '#f59e0b' : '#a8a29e',
+      color: Math.random() > 0.4 ? '#f3c668' : Math.random() > 0.5 ? '#ea8b38' : '#7cc4d9',
     }));
 
     const render = () => {
@@ -75,21 +75,28 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     };
   }, []);
 
+  // Precompute 12 lotus petals around (180, 180)
+  const lotusPetals = Array.from({ length: 12 }, (_, idx) => idx * 30);
+
   return (
     <section
       id="hero"
-      className="relative overflow-hidden py-20 sm:py-28 lg:py-32 border-b border-stone-800/70 bg-[#090807]"
+      className="relative overflow-hidden pt-16 pb-28 sm:py-28 lg:py-32 border-b-2 border-[#d4a84f]/35 bg-gradient-to-br from-[#141d34] via-[#1b2744] to-[#233154]"
     >
-      {/* Subtle drifting starfield */}
+      {/* Subtle golden & sacred ember cosmic dust */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 pointer-events-none z-0 opacity-45"
+        className="absolute inset-0 pointer-events-none z-0 opacity-75"
         aria-hidden="true"
       />
 
-      {/* Restrained radial warm glow */}
+      {/* Soft atmospheric Neelam twilight & warm Kesari temple glow */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[640px] h-[380px] bg-amber-500/5 rounded-full blur-[140px] pointer-events-none"
+        className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[540px] h-[360px] bg-[#d9842b]/18 rounded-full blur-[140px] pointer-events-none"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute bottom-0 right-1/4 translate-x-1/4 w-[520px] h-[360px] bg-[#2f6f8e]/22 rounded-full blur-[140px] pointer-events-none"
         aria-hidden="true"
       />
 
@@ -102,28 +109,30 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-7 space-y-6"
           >
-            <div className="flex items-center gap-2 text-xs text-stone-400">
-              <span className="text-amber-400 font-medium">SanatanVerse</span>
-              <span aria-hidden="true">·</span>
+            <div className="flex flex-wrap items-center gap-2 text-xs text-[#cbbd9f]">
+              <span className="text-[#f4c86a] font-semibold tracking-wider uppercase">
+                SanatanVerse
+              </span>
+              <span aria-hidden="true" className="text-[#d4a84f]/60">·</span>
               <span>Ancient Wisdom. Timeless Stories.</span>
-              <span aria-hidden="true">·</span>
-              <span>In Planning</span>
+              <span aria-hidden="true" className="text-[#d4a84f]/60">·</span>
+              <span>Interactive Chronology &amp; Comics</span>
             </div>
 
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-[3.5rem] font-semibold tracking-tight text-stone-100 leading-[1.12] text-balance">
+            <h1 className="font-serif text-4xl sm:text-5xl lg:text-[3.5rem] font-semibold tracking-tight text-[#fcf7ec] leading-[1.12] text-balance">
               Three Parallel Timelines. One Eternal Story.
             </h1>
 
-            <p className="text-base sm:text-lg text-stone-400 leading-relaxed max-w-xl">
+            <p className="text-base sm:text-lg text-[#dfd4bd] leading-relaxed max-w-xl">
               From the birth of the cosmos to the modern era, we are mapping Sanatan Dharma
-              simultaneously through Sacred Lore, Science, and History. Stories and visual
-              comics are currently being planned.
+              simultaneously through Sacred Lore, Science, and History—with original storyboards
+              and visual comics anchored to every epoch.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <button
                 onClick={onExploreTimeline}
-                className="px-6 py-3 rounded-lg font-semibold text-sm bg-amber-400 text-stone-950 hover:bg-amber-300 transition-colors inline-flex items-center gap-2 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+                className="px-6 py-3 rounded-lg font-semibold text-sm bg-gradient-to-r from-[#f1c463] to-[#e09d34] text-[#181208] hover:from-[#f7d27d] hover:to-[#ebaa42] shadow-[0_6px_22px_rgba(229,169,60,0.28)] transition-all inline-flex items-center gap-2 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5cf76]"
               >
                 <span>Explore the 3 Timelines</span>
                 <ArrowRight className="w-4 h-4" />
@@ -131,14 +140,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
               <button
                 onClick={onOpenWaitlist}
-                className="px-5 py-3 rounded-lg font-medium text-sm text-stone-300 border border-stone-800 hover:border-stone-600 hover:text-stone-100 transition-colors whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500"
+                className="px-5 py-3 rounded-lg font-medium text-sm text-[#f7ecd6] bg-[#223052]/80 border border-[#d4a84f]/40 hover:border-[#f4c86a] hover:bg-[#2a3b63] hover:text-white shadow-xs transition-colors whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e5b34b]"
               >
                 Follow Launch Updates
               </button>
             </div>
           </motion.div>
 
-          {/* Right Column: Minimal Tri-Track Cosmic Emblem */}
+          {/* Right Column: Sacred Swarna Mandala & Tri-Track Cosmic Emblem */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -146,30 +155,54 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             className="lg:col-span-5 flex items-center justify-center"
           >
             <div className="relative w-72 h-72 sm:w-88 sm:h-88 flex items-center justify-center">
-              {/* Concentric rotating orbital rings for the 3 parallel perspectives */}
               <svg
                 viewBox="0 0 360 360"
-                className="w-full h-full"
-                aria-label="Three concentric orbital tracks representing Sacred, Scientific, and Historical timelines"
+                className="w-full h-full drop-shadow-[0_14px_38px_rgba(212,168,79,0.18)]"
+                aria-label="Three concentric orbital tracks representing Sacred, Scientific, and Historical timelines around a golden mandala"
               >
                 <defs>
-                  <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.22" />
-                    <stop offset="65%" stopColor="#f59e0b" stopOpacity="0.04" />
-                    <stop offset="100%" stopColor="#090807" stopOpacity="0" />
+                  <radialGradient id="sanatanCoreGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="#f5c96b" stopOpacity="0.34" />
+                    <stop offset="55%" stopColor="#d97706" stopOpacity="0.14" />
+                    <stop offset="100%" stopColor="#1b2744" stopOpacity="0" />
                   </radialGradient>
                 </defs>
 
-                <circle cx="180" cy="180" r="145" fill="url(#coreGlow)" />
+                <circle cx="180" cy="180" r="152" fill="url(#sanatanCoreGlow)" />
 
-                {/* Outer Track: Historical Record */}
+                {/* Subtle Static 12-Petal Lotus & Octagram Yantra Frame */}
+                <g opacity="0.28" stroke="#f3c668" fill="none">
+                  {lotusPetals.map((deg) => (
+                    <ellipse
+                      key={deg}
+                      cx="180"
+                      cy="126"
+                      rx="10"
+                      ry="28"
+                      strokeWidth="0.9"
+                      transform={`rotate(${deg} 180 180)`}
+                    />
+                  ))}
+                  <rect x="128" y="128" width="104" height="104" strokeWidth="0.8" />
+                  <rect
+                    x="128"
+                    y="128"
+                    width="104"
+                    height="104"
+                    strokeWidth="0.8"
+                    transform="rotate(45 180 180)"
+                  />
+                </g>
+
+                {/* Outer Track: Historical Record (Tulsi Jade) */}
                 <g className="origin-center animate-[spin_75s_linear_infinite]">
                   <circle
                     cx="180"
                     cy="180"
                     r="160"
                     fill="none"
-                    stroke="#292524"
+                    stroke="#d4a84f"
+                    strokeOpacity="0.22"
                     strokeWidth="1"
                   />
                   <circle
@@ -178,22 +211,23 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     r="160"
                     fill="none"
                     stroke="#34d399"
-                    strokeOpacity="0.45"
-                    strokeWidth="1.25"
-                    strokeDasharray="60 320"
+                    strokeOpacity="0.78"
+                    strokeWidth="2"
+                    strokeDasharray="64 320"
                     strokeLinecap="round"
                   />
-                  <circle cx="180" cy="20" r="3" fill="#34d399" fillOpacity="0.8" />
+                  <circle cx="180" cy="20" r="4" fill="#34d399" />
                 </g>
 
-                {/* Middle Track: Scientific Cosmology */}
+                {/* Middle Track: Scientific Cosmology (Ganga Sapphire) */}
                 <g className="origin-center animate-[spin_52s_linear_infinite_reverse]">
                   <circle
                     cx="180"
                     cy="180"
                     r="122"
                     fill="none"
-                    stroke="#292524"
+                    stroke="#d4a84f"
+                    strokeOpacity="0.28"
                     strokeWidth="1"
                   />
                   <circle
@@ -202,22 +236,23 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     r="122"
                     fill="none"
                     stroke="#38bdf8"
-                    strokeOpacity="0.45"
-                    strokeWidth="1.25"
-                    strokeDasharray="48 260"
+                    strokeOpacity="0.82"
+                    strokeWidth="2"
+                    strokeDasharray="52 260"
                     strokeLinecap="round"
                   />
-                  <circle cx="302" cy="180" r="3" fill="#38bdf8" fillOpacity="0.8" />
+                  <circle cx="302" cy="180" r="4" fill="#38bdf8" />
                 </g>
 
-                {/* Inner Track: Sacred Lore */}
+                {/* Inner Track: Sacred Lore (Kesari Gold) */}
                 <g className="origin-center animate-[spin_36s_linear_infinite]">
                   <circle
                     cx="180"
                     cy="180"
                     r="84"
                     fill="none"
-                    stroke="#44403c"
+                    stroke="#d4a84f"
+                    strokeOpacity="0.35"
                     strokeWidth="1"
                   />
                   <circle
@@ -225,41 +260,50 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     cy="180"
                     r="84"
                     fill="none"
-                    stroke="#f59e0b"
-                    strokeOpacity="0.7"
-                    strokeWidth="1.5"
-                    strokeDasharray="42 200"
+                    stroke="#fbbf24"
+                    strokeOpacity="0.92"
+                    strokeWidth="2.2"
+                    strokeDasharray="44 200"
                     strokeLinecap="round"
                   />
-                  <circle cx="180" cy="96" r="3.5" fill="#fbbf24" />
+                  <circle cx="180" cy="96" r="4.5" fill="#fbbf24" />
                 </g>
 
-                {/* Center Sanctuary */}
+                {/* Center Sanctum */}
                 <circle
                   cx="180"
                   cy="180"
-                  r="40"
-                  fill="#11100e"
-                  stroke="#f59e0b"
-                  strokeOpacity="0.35"
-                  strokeWidth="1"
+                  r="44"
+                  fill="#18223b"
+                  stroke="#f3c668"
+                  strokeOpacity="0.75"
+                  strokeWidth="1.5"
+                />
+                <circle
+                  cx="180"
+                  cy="180"
+                  r="38"
+                  fill="none"
+                  stroke="#f3c668"
+                  strokeOpacity="0.3"
+                  strokeWidth="0.75"
                 />
               </svg>
 
               {/* Center Om glyph */}
               <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none select-none">
-                <span className="font-serif text-3xl sm:text-4xl text-amber-400/95 leading-none">
+                <span className="font-serif text-3xl sm:text-4xl text-[#f7cf73] leading-none drop-shadow-[0_2px_10px_rgba(245,193,86,0.45)]">
                   ॐ
                 </span>
               </div>
 
               {/* Quiet orbital legend below emblem */}
-              <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-3 text-[11px] text-stone-500 whitespace-nowrap">
-                <span className="text-amber-400/90">Sacred</span>
-                <span aria-hidden="true">·</span>
-                <span className="text-sky-400/90">Science</span>
-                <span aria-hidden="true">·</span>
-                <span className="text-emerald-400/90">History</span>
+              <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-3 text-[11px] font-medium whitespace-nowrap">
+                <span className="text-[#fbbf24]">Sacred</span>
+                <span aria-hidden="true" className="text-[#d4a84f]/50">·</span>
+                <span className="text-[#7dd3fc]">Science</span>
+                <span aria-hidden="true" className="text-[#d4a84f]/50">·</span>
+                <span className="text-[#6ee7b7]">History</span>
               </div>
             </div>
           </motion.div>

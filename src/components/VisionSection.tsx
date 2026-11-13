@@ -21,38 +21,48 @@ export const VisionSection: React.FC = () => {
       title: 'Scalable Streaming Future',
       status: 'Long-Term Horizon',
       description:
-        'Built from the ground up as a dark-mode digital home designed to expand naturally from illustrated comics into motion series and full-scale streaming.',
+        'Built from the ground up as a serene, modern digital home designed to expand naturally from illustrated comics into motion series and full-scale streaming.',
     },
   ];
 
   return (
-    <section id="vision-section" className="scroll-mt-16 py-20 sm:py-28 border-b border-stone-800/70 bg-[#090807]">
+    <section
+      id="vision-section"
+      className="scroll-mt-16 py-20 sm:py-28 border-b border-[#dcc8a4] bg-[#faf4e8]"
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="max-w-2xl space-y-3">
-          <div className="text-xs font-medium tracking-wider uppercase text-amber-400/90">
+          <div className="text-xs font-semibold tracking-wider uppercase text-[#b45309]">
             Studio Direction
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-stone-100 tracking-tight text-balance">
-            Minimal Today. Built for Scale Tomorrow.
+          <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#231b12] tracking-tight text-balance">
+            Rooted in Heritage. Built for Generations.
           </h2>
-          <p className="text-sm sm:text-base text-stone-400 leading-relaxed">
-            Our content slate is still in planning. Here is the simple foundation guiding
-            SanatanVerse as we prepare our first releases.
+          <p className="text-sm sm:text-base text-[#5a4b38] leading-relaxed">
+            Our content slate is expanding with care. Here is the curatorial foundation guiding
+            SanatanVerse as we prepare our upcoming comic volumes and series.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-stone-800/80">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-[#dfd0b4]">
           {pillars.map((pillar) => (
-            <div key={pillar.index} className="space-y-3">
-              <div className="flex items-center gap-2 text-xs text-stone-500">
-                <span className="font-mono tabular-nums text-amber-400">{pillar.index}</span>
-                <span aria-hidden="true">·</span>
-                <span>{pillar.status}</span>
+            <div
+              key={pillar.index}
+              className="p-6 rounded-xl bg-[#fbf7ee] border border-[#dfd0b4] shadow-[0_6px_22px_-8px_rgba(74,47,16,0.08)] space-y-3"
+            >
+              <div className="flex items-center gap-2 text-xs text-[#6f5d47]">
+                <span className="font-mono tabular-nums font-semibold text-[#b45309]">
+                  {pillar.index}
+                </span>
+                <span aria-hidden="true" className="text-[#c5af88]">·</span>
+                <span className="uppercase tracking-wider text-[11px] font-medium">
+                  {pillar.status}
+                </span>
               </div>
-              <h3 className="font-serif text-xl font-medium text-stone-100">
+              <h3 className="font-serif text-xl font-medium text-[#231b12]">
                 {pillar.title}
               </h3>
-              <p className="text-sm text-stone-400 leading-relaxed">
+              <p className="text-sm text-[#554736] leading-relaxed">
                 {pillar.description}
               </p>
             </div>

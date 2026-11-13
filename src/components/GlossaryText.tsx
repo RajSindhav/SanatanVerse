@@ -51,6 +51,7 @@ const GlossaryTermToken: React.FC<GlossaryTermTokenProps> = ({ text, entry }) =>
 
   const handleTogglePin = (e: React.MouseEvent) => {
     e.stopPropagation();
+    setIsOpen(false);
     if (isPinned) {
       setPinnedTerm(null);
     } else {
@@ -70,10 +71,10 @@ const GlossaryTermToken: React.FC<GlossaryTermTokenProps> = ({ text, entry }) =>
         onBlur={handleClose}
         onClick={handleTogglePin}
         aria-describedby={isOpen ? `glossary-tip-${entry.id}` : undefined}
-        className={`inline p-0 bg-transparent text-left [font:inherit] leading-[inherit] border-b border-dotted transition-colors cursor-help focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-amber-400 rounded-xs ${
+        className={`inline p-0 bg-transparent text-left [font:inherit] leading-[inherit] border-b border-dotted transition-colors cursor-help focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#b45309] rounded-xs ${
           isPinned
-            ? 'border-amber-400 text-amber-300'
-            : 'border-amber-400/55 text-stone-200 hover:border-amber-300 hover:text-amber-300'
+            ? 'border-[#b45309] text-[#92400e] bg-[#f4e4c5]'
+            : 'border-[#b45309]/60 text-[#342516] hover:border-[#b45309] hover:text-[#92400e]'
         }`}
       >
         {text}
@@ -88,25 +89,25 @@ const GlossaryTermToken: React.FC<GlossaryTermTokenProps> = ({ text, entry }) =>
             left: `${coords.left}px`,
             width: `${TOOLTIP_WIDTH}px`,
           }}
-          className={`pointer-events-none fixed z-50 max-w-[calc(100vw-24px)] p-3.5 rounded-xl bg-[#161411] border border-amber-500/40 shadow-2xl text-left block ${
+          className={`pointer-events-none fixed z-50 max-w-[calc(100vw-24px)] p-3.5 rounded-xl bg-[#fbf7ee] border border-[#d6bd93] shadow-[0_14px_34px_rgba(24,18,8,0.22)] text-left block ${
             coords.placeBelow ? '' : '-translate-y-full'
           }`}
         >
           <span className="flex items-baseline justify-between gap-2 mb-1">
-            <span className="font-serif text-sm font-semibold text-amber-300">
+            <span className="font-serif text-sm font-semibold text-[#92400e]">
               {entry.term}
             </span>
-            <span className="text-[11px] font-serif text-stone-400 shrink-0">
+            <span className="text-[11px] font-serif text-[#6f5d47] shrink-0">
               {entry.sanskrit}
             </span>
           </span>
-          <span className="block text-[11px] uppercase tracking-wider text-stone-500 mb-1.5">
+          <span className="block text-[11px] uppercase tracking-wider text-[#8a7558] mb-1.5">
             {entry.category}
           </span>
-          <span className="block text-xs text-stone-300 leading-relaxed font-sans font-normal">
+          <span className="block text-xs text-[#4e4030] leading-relaxed font-sans font-normal">
             {entry.definition}
           </span>
-          <span className="block text-[10px] text-stone-500 mt-2 pt-1.5 border-t border-stone-800/80">
+          <span className="block text-[10px] text-[#7a6449] mt-2 pt-1.5 border-t border-[#ebdcb9]">
             {isPinned ? 'Pinned in glossary bar · Click to unpin' : 'Click term to pin in glossary bar'}
           </span>
         </span>

@@ -163,7 +163,7 @@ function AppShell() {
   };
 
   return (
-    <div className="min-h-screen bg-[#090807] text-stone-100 flex flex-col font-sans selection:bg-amber-500/30 selection:text-amber-200">
+    <div className="min-h-screen bg-[#f3ead8] text-[#231b12] flex flex-col font-sans selection:bg-amber-200 selection:text-[#2c1906]">
       <Navbar
         activeSection={selectedEvent ? 'timelines' : activeSection}
         onNavigate={handleNavigate}

@@ -98,10 +98,10 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
 
   const trackColorClass =
     event.track === 'sacred'
-      ? 'text-amber-400'
+      ? 'text-[#a63d08]'
       : event.track === 'scientific'
-      ? 'text-sky-400'
-      : 'text-emerald-400';
+      ? 'text-[#155e75]'
+      : 'text-[#0f6b52]';
 
   const handleFeedbackSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -194,20 +194,20 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
   };
 
   return (
-    <article className="py-12 sm:py-16 bg-[#090807] min-h-[80vh]">
+    <article className="py-12 sm:py-16 bg-[#f3ead8] min-h-[80vh]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Top Breadcrumb & Same-Era Track Switcher */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-stone-800/80">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#dcc8a4]">
           <button
             onClick={onBack}
-            className="inline-flex items-center gap-2 text-xs font-medium text-stone-300 hover:text-amber-300 transition-colors whitespace-nowrap shrink-0 self-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 rounded"
+            className="inline-flex items-center gap-2 text-xs font-medium text-[#5a4b38] hover:text-[#92400e] transition-colors whitespace-nowrap shrink-0 self-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b45309] rounded"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to Chronological Overview</span>
           </button>
 
           {eraRecord && (
-            <div className="flex items-center gap-1 p-1 bg-[#11100e] border border-stone-800 rounded-lg self-start sm:self-auto">
+            <div className="flex items-center gap-1 p-1 bg-[#e8dac0] border border-[#d4bd95] rounded-lg self-start sm:self-auto">
               {(
                 [
                   { key: 'sacred', label: 'Sacred View', target: eraRecord.sacredPointOfView },
@@ -222,8 +222,8 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
                     onClick={() => onSelectEvent(tab.target)}
                     className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
                       isActive
-                        ? 'bg-amber-400 text-stone-950 font-semibold'
-                        : 'text-stone-400 hover:text-stone-100'
+                        ? 'bg-[#1b2744] text-[#fcf7ec] font-semibold shadow-xs'
+                        : 'text-[#5a4b38] hover:text-[#231b12]'
                     }`}
                   >
                     {tab.label}
@@ -236,8 +236,8 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
 
         {/* Title & Editorial Metadata */}
         <header className="space-y-4">
-          <div className="flex flex-wrap items-center gap-2 text-xs text-stone-400">
-            <span className={`font-medium uppercase tracking-wider ${trackColorClass}`}>
+          <div className="flex flex-wrap items-center gap-2 text-xs text-[#6f5d47]">
+            <span className={`font-semibold uppercase tracking-wider ${trackColorClass}`}>
               {dataTypeMeta.shortLabel} Track
             </span>
             <span aria-hidden="true">·</span>
@@ -248,94 +248,94 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
             {event.sanskritTitle && (
               <>
                 <span aria-hidden="true">·</span>
-                <span className="font-serif text-stone-300">{event.sanskritTitle}</span>
+                <span className="font-serif text-[#3e3121]">{event.sanskritTitle}</span>
               </>
             )}
           </div>
 
-          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-stone-100 tracking-tight leading-[1.15] text-balance">
+          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#231b12] tracking-tight leading-[1.15] text-balance">
             {event.title}
           </h1>
 
-          <p className="text-base sm:text-lg text-stone-300 leading-relaxed max-w-3xl">
+          <p className="text-base sm:text-lg text-[#4e4030] leading-relaxed max-w-3xl">
             <GlossaryText text={event.summary} />
           </p>
         </header>
 
-        {/* Accession & Classification Grid (Data Type, Chronology, Evidence) */}
+        {/* Accession & Classification Grid */}
         <section
           aria-label="Chronological Classification"
-          className="rounded-xl bg-[#11100e] border border-stone-800/80 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-stone-800/80"
+          className="rounded-xl bg-[#fbf7ee] border border-[#dcc8a4] shadow-[0_6px_22px_-8px_rgba(74,47,16,0.10)] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[#e5d6ba]"
         >
           <div className="p-5 space-y-1">
-            <div className="text-[11px] uppercase tracking-wider text-stone-500">Data Type</div>
-            <div className="text-sm font-medium text-stone-100">{dataTypeMeta.dataType}</div>
-            <div className="text-xs text-stone-400">{dataTypeMeta.methodology}</div>
+            <div className="text-[11px] uppercase tracking-wider text-[#8a7558] font-medium">Data Type</div>
+            <div className="text-sm font-semibold text-[#231b12]">{dataTypeMeta.dataType}</div>
+            <div className="text-xs text-[#5a4b38]">{dataTypeMeta.methodology}</div>
           </div>
 
           <div className="p-5 space-y-1">
-            <div className="text-[11px] uppercase tracking-wider text-stone-500">Primary Chronology</div>
-            <div className="text-sm font-medium text-stone-100 tabular-nums">
+            <div className="text-[11px] uppercase tracking-wider text-[#8a7558] font-medium">Primary Chronology</div>
+            <div className="text-sm font-semibold text-[#231b12] tabular-nums">
               {dateDisplay.primaryDate}
             </div>
             {dateDisplay.secondaryDate && (
-              <div className="text-xs text-stone-400 tabular-nums">{dateDisplay.secondaryDate}</div>
+              <div className="text-xs text-[#5a4b38] tabular-nums">{dateDisplay.secondaryDate}</div>
             )}
           </div>
 
           <div className="p-5 space-y-1">
-            <div className="text-[11px] uppercase tracking-wider text-stone-500">Evidence Label</div>
-            <div className="text-sm font-medium text-amber-300">{event.evidenceLabel}</div>
-            <div className="text-xs text-stone-400">{evidenceMeta.definition}</div>
+            <div className="text-[11px] uppercase tracking-wider text-[#8a7558] font-medium">Evidence Label</div>
+            <div className="text-sm font-semibold text-[#b45309]">{event.evidenceLabel}</div>
+            <div className="text-xs text-[#5a4b38]">{evidenceMeta.definition}</div>
           </div>
 
           <div className="p-5 space-y-1">
-            <div className="text-[11px] uppercase tracking-wider text-stone-500">
+            <div className="text-[11px] uppercase tracking-wider text-[#8a7558] font-medium">
               Text / Stratigraphic Layer
             </div>
-            <div className="text-sm font-medium text-stone-100 tabular-nums">
+            <div className="text-sm font-semibold text-[#231b12] tabular-nums">
               {event.textCompositionDate || event.historicalDateRange || 'Documented Horizon'}
             </div>
-            <div className="text-xs text-stone-500">Cross-track reference preserved</div>
+            <div className="text-xs text-[#7a6449]">Cross-track reference preserved</div>
           </div>
         </section>
 
         {/* Uncertainty & Methodology Transparency */}
-        <section className="p-6 rounded-xl bg-[#11100e] border border-stone-800/80 space-y-2">
-          <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-amber-400">
+        <section className="p-6 rounded-xl bg-[#f5ebd8] border border-[#d6bd93] space-y-2">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#92400e]">
             <AlertCircle className="w-4 h-4 shrink-0" />
             <span>Uncertainty &amp; Methodological Note</span>
           </div>
-          <p className="text-sm text-stone-300 leading-relaxed max-w-3xl">{uncertaintyText}</p>
+          <p className="text-sm text-[#4a3b2c] leading-relaxed max-w-3xl">{uncertaintyText}</p>
         </section>
 
         {/* Main Explanation & Significance */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 pt-2">
           <div className="lg:col-span-8 space-y-8">
             <div className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-100">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-[#231b12]">
                 Detailed Record
               </h2>
-              <p className="text-base text-stone-300 leading-[1.75] max-w-2xl">
+              <p className="text-base text-[#3b2f22] leading-[1.75] max-w-2xl">
                 <GlossaryText text={event.fullExplanation} />
               </p>
             </div>
 
-            <div className="space-y-3 pt-6 border-t border-stone-800/80">
-              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-100">
+            <div className="space-y-3 pt-6 border-t border-[#dcc8a4]">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-[#231b12]">
                 Cultural Significance
               </h2>
-              <p className="text-base text-stone-300 leading-[1.75] max-w-2xl">
+              <p className="text-base text-[#3b2f22] leading-[1.75] max-w-2xl">
                 <GlossaryText text={event.culturalSignificance} />
               </p>
             </div>
 
             {/* Comics & Other Media Designed for This Topic */}
-            <div className="space-y-4 pt-6 border-t border-stone-800/80">
+            <div className="space-y-4 pt-6 border-t border-[#dcc8a4]">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
-                  <Film className="w-4 h-4 text-amber-400" />
-                  <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-100">
+                  <Film className="w-4 h-4 text-[#b45309]" />
+                  <h2 className="font-serif text-xl sm:text-2xl font-medium text-[#231b12]">
                     Comics &amp; Other Media ({(mediaByTopic[event.id] || []).length})
                   </h2>
                 </div>
@@ -343,7 +343,7 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
                 <button
                   type="button"
                   onClick={() => onOpenTopicMedia(event, true)}
-                  className="px-3.5 py-2 rounded-lg text-xs font-semibold bg-amber-400 text-stone-950 hover:bg-amber-300 transition-colors inline-flex items-center gap-1.5 whitespace-nowrap"
+                  className="px-3.5 py-2 rounded-lg text-xs font-semibold bg-[#b45309] text-[#fffaf0] hover:bg-[#92400e] shadow-xs transition-colors inline-flex items-center gap-1.5 whitespace-nowrap"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>Add Comic / Media</span>
@@ -351,14 +351,14 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
               </div>
 
               {(mediaByTopic[event.id] || []).length === 0 ? (
-                <div className="p-6 rounded-xl bg-[#11100e] border border-stone-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <p className="text-sm text-stone-400">
+                <div className="p-6 rounded-xl bg-[#fbf7ee] border border-[#dcc8a4] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <p className="text-sm text-[#5a4b38]">
                     No comics or multimedia releases have been attached to this topic yet.
                   </p>
                   <button
                     type="button"
                     onClick={() => onOpenTopicMedia(event, true)}
-                    className="px-4 py-2 rounded-lg text-xs font-semibold bg-stone-900 border border-stone-700 text-stone-100 hover:border-amber-400 whitespace-nowrap self-start"
+                    className="px-4 py-2 rounded-lg text-xs font-semibold bg-[#f5ecda] border border-[#d4bd95] text-[#231b12] hover:border-[#b45309] whitespace-nowrap self-start"
                   >
                     Create First Issue
                   </button>
@@ -371,10 +371,10 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
                     return (
                       <div
                         key={item.id}
-                        className="rounded-xl bg-[#11100e] border border-stone-800/80 overflow-hidden flex flex-col justify-between hover:border-stone-700 transition-colors"
+                        className="rounded-xl bg-[#fbf7ee] border border-[#dcc8a4] shadow-xs overflow-hidden flex flex-col justify-between hover:border-[#b45309]/50 transition-colors"
                       >
                         <div>
-                          <div className="aspect-[16/9] bg-[#090807] border-b border-stone-800/80 overflow-hidden">
+                          <div className="aspect-[16/9] bg-[#1b2744] border-b border-[#dcc8a4] overflow-hidden">
                             {!coverFailed && coverMeta ? (
                               <img
                                 src={coverMeta.src}
@@ -386,15 +386,15 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
                                 className="w-full h-full object-cover scale-[1.06]"
                               />
                             ) : (
-                              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-amber-950/60 to-stone-950">
-                                <BookOpen className="w-7 h-7 text-amber-400/70" />
+                              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#1b2744] to-[#2c3d63]">
+                                <BookOpen className="w-7 h-7 text-[#f4c86a]" />
                               </div>
                             )}
                           </div>
 
                           <div className="p-4 space-y-2">
-                            <div className="flex flex-wrap items-center gap-1.5 text-xs text-stone-400">
-                              <span className="text-amber-400 font-medium">{item.mediaType}</span>
+                            <div className="flex flex-wrap items-center gap-1.5 text-xs text-[#6f5d47]">
+                              <span className="text-[#92400e] font-semibold">{item.mediaType}</span>
                               {item.issueNumber && (
                                 <>
                                   <span aria-hidden="true">·</span>
@@ -405,25 +405,25 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
                               <span>{item.status}</span>
                             </div>
 
-                            <h3 className="font-serif text-base font-medium text-stone-100 leading-snug">
+                            <h3 className="font-serif text-base font-medium text-[#231b12] leading-snug">
                               {item.title}
                             </h3>
 
-                            <p className="text-xs sm:text-sm text-stone-400 leading-relaxed line-clamp-2">
+                            <p className="text-xs sm:text-sm text-[#554736] leading-relaxed line-clamp-2">
                               {item.synopsis}
                             </p>
                           </div>
                         </div>
 
-                        <div className="px-4 py-3 border-t border-stone-800/60 flex items-center justify-between text-xs">
-                          <span className="text-stone-500">
+                        <div className="px-4 py-3 border-t border-[#e5d6ba] bg-[#f5ecda] flex items-center justify-between text-xs">
+                          <span className="text-[#6f5d47]">
                             {item.comicPanels.length}{' '}
                             {item.comicPanels.length === 1 ? 'panel' : 'panels'}
                           </span>
                           <button
                             type="button"
                             onClick={() => onOpenTopicMedia(event)}
-                            className="inline-flex items-center gap-1 text-amber-400 hover:text-amber-300 font-medium"
+                            className="inline-flex items-center gap-1 text-[#b45309] hover:text-[#92400e] font-semibold"
                           >
                             <span>Read / Edit Studio</span>
                             <ArrowRight className="w-3.5 h-3.5" />
@@ -437,38 +437,38 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
             </div>
 
             {/* Source References & Bibliography */}
-            <div className="space-y-4 pt-6 border-t border-stone-800/80">
+            <div className="space-y-4 pt-6 border-t border-[#dcc8a4]">
               <div className="flex items-center gap-2">
-                <BookOpen className="w-4 h-4 text-amber-400" />
-                <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-100">
+                <BookOpen className="w-4 h-4 text-[#b45309]" />
+                <h2 className="font-serif text-xl sm:text-2xl font-medium text-[#231b12]">
                   Source References &amp; Bibliography
                 </h2>
               </div>
 
-              <ol className="divide-y divide-stone-800/70 border border-stone-800/80 rounded-xl bg-[#11100e]">
+              <ol className="divide-y divide-[#e5d6ba] border border-[#dcc8a4] rounded-xl bg-[#fbf7ee] shadow-xs">
                 {event.sources.map((src, idx) => (
                   <li key={idx} className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div className="space-y-1">
-                      <div className="text-sm font-medium text-stone-100">
-                        <span className="font-mono tabular-nums text-amber-400/90 mr-2">
+                      <div className="text-sm font-medium text-[#231b12]">
+                        <span className="font-mono tabular-nums text-[#b45309] mr-2">
                           {String(idx + 1).padStart(2, '0')}.
                         </span>
                         {src.title}
                         {src.author && (
-                          <span className="text-stone-400 font-normal"> — {src.author}</span>
+                          <span className="text-[#6f5d47] font-normal"> — {src.author}</span>
                         )}
                       </div>
-                      <div className="text-xs text-stone-400 pl-7">{src.citation}</div>
+                      <div className="text-xs text-[#5a4b38] pl-7">{src.citation}</div>
                     </div>
 
-                    <div className="flex items-center gap-3 pl-7 sm:pl-0 shrink-0 text-xs text-stone-500">
+                    <div className="flex items-center gap-3 pl-7 sm:pl-0 shrink-0 text-xs text-[#6f5d47]">
                       <span className="capitalize">{src.type} source</span>
                       {src.link && (
                         <a
                           href={src.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-amber-400 hover:text-amber-300 inline-flex items-center gap-1"
+                          className="text-[#b45309] hover:text-[#92400e] font-medium inline-flex items-center gap-1"
                         >
                           <span>Link</span>
                           <ExternalLink className="w-3 h-3" />
@@ -481,27 +481,27 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
             </div>
           </div>
 
-          {/* Right Margin: Related People, Texts, Places & Concepts */}
+          {/* Right Margin */}
           <aside className="lg:col-span-4 space-y-6">
-            <div className="p-6 rounded-xl bg-[#11100e] border border-stone-800/80 space-y-4">
+            <div className="p-6 rounded-xl bg-[#fbf7ee] border border-[#dcc8a4] shadow-xs space-y-4">
               <div className="space-y-1">
-                <div className="text-xs font-medium uppercase tracking-wider text-stone-400">
+                <div className="text-xs font-semibold uppercase tracking-wider text-[#6f5d47]">
                   Related Entities
                 </div>
-                <p className="text-xs text-stone-500">
+                <p className="text-xs text-[#7a6449]">
                   People, texts, places &amp; concepts. Click any item to filter the timeline.
                 </p>
               </div>
 
-              <ul className="divide-y divide-stone-800/60">
+              <ul className="divide-y divide-[#ebdcb9]">
                 {event.relatedEntities.map((entity) => (
                   <li key={entity}>
                     <button
                       onClick={() => onSearchEntity(entity)}
-                      className="w-full py-2.5 text-left text-sm text-stone-200 hover:text-amber-300 transition-colors flex items-center justify-between group"
+                      className="w-full py-2.5 text-left text-sm text-[#3e3121] hover:text-[#92400e] transition-colors flex items-center justify-between group"
                     >
                       <span>{entity}</span>
-                      <span className="text-xs text-stone-500 group-hover:text-amber-300">
+                      <span className="text-xs text-[#8c775a] group-hover:text-[#b45309]">
                         Filter →
                       </span>
                     </button>
@@ -511,11 +511,11 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
             </div>
 
             {eraRecord && (
-              <div className="p-6 rounded-xl bg-[#11100e] border border-stone-800/80 space-y-3">
-                <div className="text-xs font-medium uppercase tracking-wider text-stone-400">
+              <div className="p-6 rounded-xl bg-[#fbf7ee] border border-[#dcc8a4] shadow-xs space-y-3">
+                <div className="text-xs font-semibold uppercase tracking-wider text-[#6f5d47]">
                   Tri-Perspective Convergence
                 </div>
-                <p className="text-xs sm:text-sm text-stone-300 leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#4e4030] leading-relaxed">
                   <GlossaryText text={eraRecord.convergenceHighlight} />
                 </p>
               </div>
@@ -524,15 +524,15 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
         </section>
 
         {/* Correction & Feedback Mechanism */}
-        <section className="pt-8 border-t border-stone-800/80 space-y-6">
+        <section className="pt-8 border-t border-[#dcc8a4] space-y-6">
           <div className="max-w-2xl space-y-2">
-            <div className="text-xs font-medium uppercase tracking-wider text-amber-400">
+            <div className="text-xs font-semibold uppercase tracking-wider text-[#b45309]">
               Scholarly Review
             </div>
-            <h2 className="font-serif text-2xl font-semibold text-stone-100">
+            <h2 className="font-serif text-2xl font-semibold text-[#231b12]">
               Submit a Correction or Feedback
             </h2>
-            <p className="text-sm text-stone-400">
+            <p className="text-sm text-[#5a4b38]">
               Notice a date discrepancy, missing primary citation, or translation nuance? Share a
               correction or suggested bibliography entry for this record.
             </p>
@@ -541,17 +541,17 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
           <form
             onSubmit={handleFeedbackSubmit}
             noValidate
-            className="p-6 sm:p-8 rounded-xl bg-[#11100e] border border-stone-800/80 space-y-5 max-w-3xl"
+            className="p-6 sm:p-8 rounded-xl bg-[#fbf7ee] border border-[#dcc8a4] shadow-xs space-y-5 max-w-3xl"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-medium text-stone-300 mb-1.5">
+                <label className="block text-xs font-medium text-[#3e3121] mb-1.5">
                   Correction Type
                 </label>
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-lg bg-[#090807] border border-stone-800 text-sm text-stone-200 focus:outline-none focus:border-amber-400"
+                  className="w-full px-3.5 py-2.5 rounded-lg bg-[#fffdf8] border border-[#d5bf97] text-sm text-[#231b12] focus:outline-none focus:border-[#b45309]"
                 >
                   <option value="Chronology / Date Correction">Chronology / Date Correction</option>
                   <option value="Source / Bibliography Addition">Source / Bibliography Addition</option>
@@ -562,7 +562,7 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-stone-300 mb-1.5">
+                <label className="block text-xs font-medium text-[#3e3121] mb-1.5">
                   Contributor Email (Optional)
                 </label>
                 <input
@@ -570,16 +570,16 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
                   value={contributorEmail}
                   onChange={(e) => setContributorEmail(e.target.value)}
                   placeholder="you@example.com"
-                  className="w-full px-3.5 py-2.5 rounded-lg bg-[#090807] border border-stone-800 text-sm text-stone-200 placeholder:text-stone-500 focus:outline-none focus:border-amber-400"
+                  className="w-full px-3.5 py-2.5 rounded-lg bg-[#fffdf8] border border-[#d5bf97] text-sm text-[#231b12] placeholder:text-[#8d795e] focus:outline-none focus:border-[#b45309]"
                 />
                 {formErrors.contributorEmail && (
-                  <p className="text-xs text-rose-400 mt-1">{formErrors.contributorEmail}</p>
+                  <p className="text-xs text-rose-700 mt-1">{formErrors.contributorEmail}</p>
                 )}
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-stone-300 mb-1.5">
+              <label className="block text-xs font-medium text-[#3e3121] mb-1.5">
                 Proposed Correction or Feedback
               </label>
               <textarea
@@ -587,15 +587,15 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
                 placeholder="Describe what should be updated or clarified..."
-                className="w-full px-3.5 py-2.5 rounded-lg bg-[#090807] border border-stone-800 text-sm text-stone-200 placeholder:text-stone-500 focus:outline-none focus:border-amber-400"
+                className="w-full px-3.5 py-2.5 rounded-lg bg-[#fffdf8] border border-[#d5bf97] text-sm text-[#231b12] placeholder:text-[#8d795e] focus:outline-none focus:border-[#b45309]"
               />
               {formErrors.note && (
-                <p className="text-xs text-rose-400 mt-1">{formErrors.note}</p>
+                <p className="text-xs text-rose-700 mt-1">{formErrors.note}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-stone-300 mb-1.5">
+              <label className="block text-xs font-medium text-[#3e3121] mb-1.5">
                 Suggested Primary Source / Citation (Optional)
               </label>
               <input
@@ -603,7 +603,7 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
                 value={suggestedSource}
                 onChange={(e) => setSuggestedSource(e.target.value)}
                 placeholder="e.g. Epigraphia Indica Vol. VI, or BORI Critical Edition verse"
-                className="w-full px-3.5 py-2.5 rounded-lg bg-[#090807] border border-stone-800 text-sm text-stone-200 placeholder:text-stone-500 focus:outline-none focus:border-amber-400"
+                className="w-full px-3.5 py-2.5 rounded-lg bg-[#fffdf8] border border-[#d5bf97] text-sm text-[#231b12] placeholder:text-[#8d795e] focus:outline-none focus:border-[#b45309]"
               />
             </div>
 
@@ -611,20 +611,20 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-5 py-2.5 rounded-lg font-semibold text-xs sm:text-sm bg-amber-400 text-stone-950 hover:bg-amber-300 transition-colors disabled:opacity-50"
+                className="px-5 py-2.5 rounded-lg font-semibold text-xs sm:text-sm bg-[#b45309] text-[#fffaf0] hover:bg-[#92400e] shadow-xs transition-colors disabled:opacity-50"
               >
                 {isSubmitting ? 'Submitting...' : 'Submit Correction / Feedback'}
               </button>
 
               {lastSubmittedId && (
-                <div className="inline-flex items-center gap-2 text-xs text-emerald-400">
+                <div className="inline-flex items-center gap-2 text-xs text-emerald-700 font-medium">
                   <Check className="w-4 h-4" />
                   <span>Recorded ({lastSubmittedId}). Thank you for improving the archive.</span>
                 </div>
               )}
 
               {submitError && (
-                <div className="text-xs text-rose-400">{submitError}</div>
+                <div className="text-xs text-rose-700">{submitError}</div>
               )}
             </div>
           </form>
@@ -632,19 +632,19 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
           {/* Previously Submitted Notes for This Event */}
           {submittedNotes.length > 0 && (
             <div className="max-w-3xl space-y-3">
-              <div className="text-xs font-medium uppercase tracking-wider text-stone-400">
+              <div className="text-xs font-semibold uppercase tracking-wider text-[#6f5d47]">
                 Recent Community Notes ({submittedNotes.length})
               </div>
-              <div className="divide-y divide-stone-800/70 border border-stone-800/80 rounded-xl bg-[#11100e]">
+              <div className="divide-y divide-[#e5d6ba] border border-[#dcc8a4] rounded-xl bg-[#fbf7ee] shadow-xs">
                 {submittedNotes.map((item) => (
                   <div key={item.id} className="p-4 space-y-1.5">
-                    <div className="flex items-center justify-between text-xs text-stone-400">
-                      <span className="text-amber-300 font-medium">{item.category}</span>
-                      <span className="font-mono tabular-nums text-stone-500">{item.id}</span>
+                    <div className="flex items-center justify-between text-xs text-[#6f5d47]">
+                      <span className="text-[#b45309] font-semibold">{item.category}</span>
+                      <span className="font-mono tabular-nums text-[#8a7558]">{item.id}</span>
                     </div>
-                    <p className="text-sm text-stone-200">{item.note}</p>
+                    <p className="text-sm text-[#3e3121]">{item.note}</p>
                     {item.suggestedSource && (
-                      <div className="text-xs text-stone-400">
+                      <div className="text-xs text-[#7a6449]">
                         Citation: {item.suggestedSource}
                       </div>
                     )}
